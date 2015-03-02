@@ -75,25 +75,25 @@
     return dic;
 }
 
--(void)request:(NSString*)method withParams:(NSDictionary*)dic complete:(void(^)(NSDictionary*))block
+-(NSOperation *)request:(NSString*)method withParams:(NSDictionary*)dic complete:(void(^)(NSDictionary*))block
 {
     NSDictionary *userInfo=[NSDictionary dictionaryWithObjectsAndKeys:block,completeBlockKey, nil];
-    [self addRequestToQueueWithParams:dic userInfo:userInfo forMethod:method];
+    return [self addRequestToQueueWithParams:dic userInfo:userInfo forMethod:method];
 }
 
--(void)addRequestToQueueWithParams:(NSDictionary*)paramDic userInfo:(NSDictionary*)info forMethod:(NSString*)method
+-(NSOperation *)addRequestToQueueWithParams:(NSDictionary*)paramDic userInfo:(NSDictionary*)info forMethod:(NSString*)method
 {
     NSDictionary *filteredDic=[self preProcessParams:paramDic forMethod:method];
     NSString *paramJsonStr=[self jsonStringFromDictionary:filteredDic];
-    [self addRequestToQueueWithParamString:paramJsonStr userInfo:info forMethod:method];
+    return [self addRequestToQueueWithParamString:paramJsonStr userInfo:info forMethod:method];
 }
 
--(void)addRequestToQueueWithParamString:(NSString*)paramJsonStr userInfo:(NSDictionary*)info forMethod:(NSString*)method
+-(NSOperation *)addRequestToQueueWithParamString:(NSString*)paramJsonStr userInfo:(NSDictionary*)info forMethod:(NSString*)method
 {
-    [self addRequestToQueueWithParamString:paramJsonStr userInfo:info forMethod:method leftRetryTime:_retryTime];
+    return [self addRequestToQueueWithParamString:paramJsonStr userInfo:info forMethod:method leftRetryTime:_retryTime];
 }
 
--(void)addRequestToQueueWithParamString:(NSString*)paramJsonStr userInfo:(NSDictionary*)info forMethod:(NSString*)method leftRetryTime:(NSUInteger)leftRetryTime{
+-(NSOperation *)addRequestToQueueWithParamString:(NSString*)paramJsonStr userInfo:(NSDictionary*)info forMethod:(NSString*)method leftRetryTime:(NSUInteger)leftRetryTime{
     NSURL *url=[self createUrlFor:method withJsonStr:paramJsonStr];
     NSMutableURLRequest *request=[[NSMutableURLRequest alloc]initWithURL:url];
     [self configRequest:request];
@@ -114,6 +114,7 @@
     operation.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModePublicKey];
     operation.securityPolicy.allowInvalidCertificates = YES;
     [self.manager.operationQueue addOperation:operation];
+    return operation;
 }
 
 -(void)configRequest:(NSMutableURLRequest*)request{
@@ -124,9 +125,9 @@
     return [XGResponseBase class];
 }
 
--(void)request:(NSString*)method withParams:(NSDictionary*)dic finish:(void(^)(XGResponseBase*))result
+-(NSOperation *)request:(NSString*)method withParams:(NSDictionary*)dic finish:(void(^)(XGResponseBase*))result
 {
-    [self request:method withParams:dic complete:^(NSDictionary *dic) {
+    return [self request:method withParams:dic complete:^(NSDictionary *dic) {
         if(result)
         {
             Class responseClz = [self responseClass:method];
@@ -136,12 +137,13 @@
     }];
 }
 
--(void)request:(NSString*)method withParams:(NSDictionary*)dic andTimeOut:(NSTimeInterval)timeout finish:(void(^)(XGResponseBase*))result{
+-(NSOperation *)request:(NSString*)method withParams:(NSDictionary*)dic andTimeOut:(NSTimeInterval)timeout finish:(void(^)(XGResponseBase*))result{
     @synchronized(self){
         NSUInteger originalTimeOut = _timeoutSecond;
         _timeoutSecond = timeout;
-        [self request:method withParams:dic finish:result];
+        NSOperation *op = [self request:method withParams:dic finish:result];
         _timeoutSecond = originalTimeOut;
+        return op;
     }
 }
 

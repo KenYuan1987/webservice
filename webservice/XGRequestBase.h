@@ -22,6 +22,6 @@
 
 -(void)cancelAllRequest;
 -(void)tryMyBestToLoad:(void(^)(void))webserviceCall;
--(void)request:(NSString*)method withParams:(NSDictionary*)dic finish:(void(^)(XGResponseBase*))result;
--(void)request:(NSString*)method withParams:(NSDictionary*)dic andTimeOut:(NSTimeInterval)timeout finish:(void(^)(XGResponseBase*))result;
+-(NSOperation *)request:(NSString*)method withParams:(NSDictionary*)dic finish:(void(^)(XGResponseBase*))result;
+-(NSOperation *)request:(NSString*)method withParams:(NSDictionary*)dic andTimeOut:(NSTimeInterval)timeout finish:(void(^)(XGResponseBase*))result;
 @end

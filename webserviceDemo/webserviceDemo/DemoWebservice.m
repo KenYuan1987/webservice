@@ -114,9 +114,9 @@ static NSString *_staticCardID = @"";
 
 #pragma mark - interface
 
--(void)businessZones:(NSString*)city complete:(void(^)(DemoResponse*))result{
+-(NSOperation *)businessZones:(NSString*)city complete:(void(^)(DemoResponse*))result{
     NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:city,@"city", nil];
-    [self request:@"default/businessZones" withParams:params finish:^(XGResponseBase *r) {
+    return [self request:@"default/businessZones" withParams:params finish:^(XGResponseBase *r) {
         if (result) {
             result((DemoResponse *)r);
         }

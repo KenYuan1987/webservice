@@ -16,6 +16,6 @@
 
 -(void)clearSession;
 
--(void)businessZones:(NSString*)city complete:(void(^)(DemoResponse*))result;
+-(NSOperation *)businessZones:(NSString*)city complete:(void(^)(DemoResponse*))result;
 
 @end

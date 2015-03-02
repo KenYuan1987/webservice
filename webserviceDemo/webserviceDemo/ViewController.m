@@ -17,9 +17,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.webservice businessZones:@"广州" complete:^(DemoResponse *response) {
+    NSOperation *operation = [self.webservice businessZones:@"广州" complete:^(DemoResponse *response) {
         NSLog(@"%@",response.mapData);
+        NSLog(@"%@",response.error);
     }];
+    [operation cancel];
 }
 
 -(DemoWebservice *)webservice{
