@@ -1,0 +1,483 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		79DF91EB3B0CFE5E01932E9A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF461485F39748B6C6125CA /* libPods.a */; };
+		BEDB802E1AA15A3F00E10122 /* libwebservice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BEDB80221AA15A3F00E10122 /* libwebservice.a */; };
+		BEDB804A1AA15D8600E10122 /* UrlCreationUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDB80441AA15D8600E10122 /* UrlCreationUtil.m */; };
+		BEDB804B1AA15D8600E10122 /* WebserviceReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDB80461AA15D8600E10122 /* WebserviceReachability.m */; };
+		BEDB804E1AA15F8000E10122 /* XGResponseBase.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDB804D1AA15F8000E10122 /* XGResponseBase.m */; };
+		BEDB80501AA168B600E10122 /* XGRequestBase.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDB804F1AA168B600E10122 /* XGRequestBase.m */; };
+		BEDB80901AA1757200E10122 /* XGRequestBase.h in Headers */ = {isa = PBXBuildFile; fileRef = BEDB803C1AA15D8600E10122 /* XGRequestBase.h */; };
+		BEDB80911AA1757200E10122 /* XGResponseBase.h in Headers */ = {isa = PBXBuildFile; fileRef = BEDB804C1AA15F8000E10122 /* XGResponseBase.h */; };
+		BEDB80921AA1757200E10122 /* UrlCreationUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = BEDB80431AA15D8600E10122 /* UrlCreationUtil.h */; };
+		BEDB80931AA1757200E10122 /* WebserviceReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = BEDB80451AA15D8600E10122 /* WebserviceReachability.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BEDB802F1AA15A3F00E10122 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BEDB801A1AA15A3F00E10122 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BEDB80211AA15A3F00E10122;
+			remoteInfo = webservice;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BEDB80201AA15A3F00E10122 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1DF461485F39748B6C6125CA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE40A7DD656FFD465866167E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		BEDB80221AA15A3F00E10122 /* libwebservice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libwebservice.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEDB802D1AA15A3F00E10122 /* webserviceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = webserviceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEDB80331AA15A3F00E10122 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEDB803C1AA15D8600E10122 /* XGRequestBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XGRequestBase.h; sourceTree = "<group>"; };
+		BEDB80431AA15D8600E10122 /* UrlCreationUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlCreationUtil.h; sourceTree = "<group>"; };
+		BEDB80441AA15D8600E10122 /* UrlCreationUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlCreationUtil.m; sourceTree = "<group>"; };
+		BEDB80451AA15D8600E10122 /* WebserviceReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebserviceReachability.h; sourceTree = "<group>"; };
+		BEDB80461AA15D8600E10122 /* WebserviceReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebserviceReachability.m; sourceTree = "<group>"; };
+		BEDB804C1AA15F8000E10122 /* XGResponseBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XGResponseBase.h; sourceTree = "<group>"; };
+		BEDB804D1AA15F8000E10122 /* XGResponseBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XGResponseBase.m; sourceTree = "<group>"; };
+		BEDB804F1AA168B600E10122 /* XGRequestBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XGRequestBase.m; sourceTree = "<group>"; };
+		EB60FD881FB989DECE4BAE8E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BEDB801F1AA15A3F00E10122 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				79DF91EB3B0CFE5E01932E9A /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEDB802A1AA15A3F00E10122 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEDB802E1AA15A3F00E10122 /* libwebservice.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		547970FC2C336A1FBD7E35FD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DF461485F39748B6C6125CA /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		786148D3723EE3E8B0DC89EA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BE40A7DD656FFD465866167E /* Pods.debug.xcconfig */,
+				EB60FD881FB989DECE4BAE8E /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		BEDB80191AA15A3F00E10122 = {
+			isa = PBXGroup;
+			children = (
+				BEDB80241AA15A3F00E10122 /* webservice */,
+				BEDB80311AA15A3F00E10122 /* webserviceTests */,
+				BEDB80231AA15A3F00E10122 /* Products */,
+				786148D3723EE3E8B0DC89EA /* Pods */,
+				547970FC2C336A1FBD7E35FD /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		BEDB80231AA15A3F00E10122 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BEDB80221AA15A3F00E10122 /* libwebservice.a */,
+				BEDB802D1AA15A3F00E10122 /* webserviceTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BEDB80241AA15A3F00E10122 /* webservice */ = {
+			isa = PBXGroup;
+			children = (
+				BEDB803C1AA15D8600E10122 /* XGRequestBase.h */,
+				BEDB804F1AA168B600E10122 /* XGRequestBase.m */,
+				BEDB804C1AA15F8000E10122 /* XGResponseBase.h */,
+				BEDB804D1AA15F8000E10122 /* XGResponseBase.m */,
+				BEDB803E1AA15D8600E10122 /* util */,
+			);
+			path = webservice;
+			sourceTree = "<group>";
+		};
+		BEDB80311AA15A3F00E10122 /* webserviceTests */ = {
+			isa = PBXGroup;
+			children = (
+				BEDB80321AA15A3F00E10122 /* Supporting Files */,
+			);
+			path = webserviceTests;
+			sourceTree = "<group>";
+		};
+		BEDB80321AA15A3F00E10122 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BEDB80331AA15A3F00E10122 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BEDB803E1AA15D8600E10122 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				BEDB80431AA15D8600E10122 /* UrlCreationUtil.h */,
+				BEDB80441AA15D8600E10122 /* UrlCreationUtil.m */,
+				BEDB80451AA15D8600E10122 /* WebserviceReachability.h */,
+				BEDB80461AA15D8600E10122 /* WebserviceReachability.m */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		BEDB808F1AA1755900E10122 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEDB80901AA1757200E10122 /* XGRequestBase.h in Headers */,
+				BEDB80911AA1757200E10122 /* XGResponseBase.h in Headers */,
+				BEDB80921AA1757200E10122 /* UrlCreationUtil.h in Headers */,
+				BEDB80931AA1757200E10122 /* WebserviceReachability.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		BEDB80211AA15A3F00E10122 /* webservice */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEDB80361AA15A3F00E10122 /* Build configuration list for PBXNativeTarget "webservice" */;
+			buildPhases = (
+				2FF1A99B9313F661F0059BDB /* Check Pods Manifest.lock */,
+				BEDB801E1AA15A3F00E10122 /* Sources */,
+				BEDB801F1AA15A3F00E10122 /* Frameworks */,
+				BEDB80201AA15A3F00E10122 /* CopyFiles */,
+				712D61EED549354827EE5AED /* Copy Pods Resources */,
+				BEDB808F1AA1755900E10122 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = webservice;
+			productName = webservice;
+			productReference = BEDB80221AA15A3F00E10122 /* libwebservice.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		BEDB802C1AA15A3F00E10122 /* webserviceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEDB80391AA15A3F00E10122 /* Build configuration list for PBXNativeTarget "webserviceTests" */;
+			buildPhases = (
+				BEDB80291AA15A3F00E10122 /* Sources */,
+				BEDB802A1AA15A3F00E10122 /* Frameworks */,
+				BEDB802B1AA15A3F00E10122 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BEDB80301AA15A3F00E10122 /* PBXTargetDependency */,
+			);
+			name = webserviceTests;
+			productName = webserviceTests;
+			productReference = BEDB802D1AA15A3F00E10122 /* webserviceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BEDB801A1AA15A3F00E10122 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = ken;
+				TargetAttributes = {
+					BEDB80211AA15A3F00E10122 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					BEDB802C1AA15A3F00E10122 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = BEDB801D1AA15A3F00E10122 /* Build configuration list for PBXProject "webservice" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BEDB80191AA15A3F00E10122;
+			productRefGroup = BEDB80231AA15A3F00E10122 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BEDB80211AA15A3F00E10122 /* webservice */,
+				BEDB802C1AA15A3F00E10122 /* webserviceTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BEDB802B1AA15A3F00E10122 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2FF1A99B9313F661F0059BDB /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		712D61EED549354827EE5AED /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BEDB801E1AA15A3F00E10122 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEDB804A1AA15D8600E10122 /* UrlCreationUtil.m in Sources */,
+				BEDB80501AA168B600E10122 /* XGRequestBase.m in Sources */,
+				BEDB804E1AA15F8000E10122 /* XGResponseBase.m in Sources */,
+				BEDB804B1AA15D8600E10122 /* WebserviceReachability.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEDB80291AA15A3F00E10122 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BEDB80301AA15A3F00E10122 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BEDB80211AA15A3F00E10122 /* webservice */;
+			targetProxy = BEDB802F1AA15A3F00E10122 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		BEDB80341AA15A3F00E10122 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		BEDB80351AA15A3F00E10122 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BEDB80371AA15A3F00E10122 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE40A7DD656FFD465866167E /* Pods.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "d17d81f1-5818-4cb7-a660-ec1959162756";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		BEDB80381AA15A3F00E10122 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EB60FD881FB989DECE4BAE8E /* Pods.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: YuLong Hong (6T6VEX35FD)";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "d17d81f1-5818-4cb7-a660-ec1959162756";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		BEDB803A1AA15A3F00E10122 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = webserviceTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		BEDB803B1AA15A3F00E10122 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = webserviceTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BEDB801D1AA15A3F00E10122 /* Build configuration list for PBXProject "webservice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEDB80341AA15A3F00E10122 /* Debug */,
+				BEDB80351AA15A3F00E10122 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BEDB80361AA15A3F00E10122 /* Build configuration list for PBXNativeTarget "webservice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEDB80371AA15A3F00E10122 /* Debug */,
+				BEDB80381AA15A3F00E10122 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BEDB80391AA15A3F00E10122 /* Build configuration list for PBXNativeTarget "webserviceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEDB803A1AA15A3F00E10122 /* Debug */,
+				BEDB803B1AA15A3F00E10122 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BEDB801A1AA15A3F00E10122 /* Project object */;
+}

@@ -1,0 +1,540 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BE51E9281AA408D1003A4E6A /* libwebservice.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE51E9271AA408D1003A4E6A /* libwebservice.a */; };
+		BE51E9301AA4096C003A4E6A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE51E92F1AA4096C003A4E6A /* libPods.a */; };
+		BE51E9331AA40986003A4E6A /* libPods-AFNetworking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE51E9311AA40986003A4E6A /* libPods-AFNetworking.a */; };
+		BE51E9341AA40986003A4E6A /* libPods-Reachability.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE51E9321AA40986003A4E6A /* libPods-Reachability.a */; };
+		BE51E9361AA409B9003A4E6A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE51E9351AA409B9003A4E6A /* CoreGraphics.framework */; };
+		BE51E9381AA409CB003A4E6A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE51E9371AA409CB003A4E6A /* MobileCoreServices.framework */; };
+		BE51E93A1AA409D2003A4E6A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE51E9391AA409D2003A4E6A /* Security.framework */; };
+		BE51E93C1AA409DC003A4E6A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE51E93B1AA409DC003A4E6A /* SystemConfiguration.framework */; };
+		BE51E93F1AA40CA3003A4E6A /* ca.cer in Resources */ = {isa = PBXBuildFile; fileRef = BE51E93D1AA40CA3003A4E6A /* ca.cer */; };
+		BE51E9401AA40CA3003A4E6A /* supercard.cer in Resources */ = {isa = PBXBuildFile; fileRef = BE51E93E1AA40CA3003A4E6A /* supercard.cer */; };
+		BEDB80601AA1727100E10122 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDB805F1AA1727100E10122 /* main.m */; };
+		BEDB80631AA1727100E10122 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDB80621AA1727100E10122 /* AppDelegate.m */; };
+		BEDB80661AA1727100E10122 /* webserviceDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BEDB80641AA1727100E10122 /* webserviceDemo.xcdatamodeld */; };
+		BEDB80691AA1727100E10122 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDB80681AA1727100E10122 /* ViewController.m */; };
+		BEDB806C1AA1727100E10122 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEDB806A1AA1727100E10122 /* Main.storyboard */; };
+		BEDB806E1AA1727100E10122 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEDB806D1AA1727100E10122 /* Images.xcassets */; };
+		BEDB80711AA1727100E10122 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BEDB806F1AA1727100E10122 /* LaunchScreen.xib */; };
+		BEDB807D1AA1727100E10122 /* webserviceDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDB807C1AA1727100E10122 /* webserviceDemoTests.m */; };
+		BEDB808B1AA172CE00E10122 /* DemoWebservice.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDB80881AA172CE00E10122 /* DemoWebservice.m */; };
+		BEDB808C1AA172CE00E10122 /* DemoResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = BEDB808A1AA172CE00E10122 /* DemoResponse.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BEDB80771AA1727100E10122 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BEDB80521AA1727100E10122 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BEDB80591AA1727100E10122;
+			remoteInfo = webserviceDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BE51E9211AA3FF0C003A4E6A /* libwebservice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libwebservice.a; path = "../build/Debug-iphoneos/libwebservice.a"; sourceTree = "<group>"; };
+		BE51E9231AA3FF10003A4E6A /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "../Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
+		BE51E9251AA408CE003A4E6A /* libPods-webservice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-webservice.a"; path = "../Pods/build/Debug-iphoneos/libPods-webservice.a"; sourceTree = "<group>"; };
+		BE51E9271AA408D1003A4E6A /* libwebservice.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libwebservice.a; path = "../../../../../../Library/Developer/Xcode/DerivedData/webservice-dnlmjxmudojwdsgrscywdrtgahoh/Build/Products/Debug-iphoneos/libwebservice.a"; sourceTree = "<group>"; };
+		BE51E9291AA408DD003A4E6A /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "../Pods/build/Debug-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
+		BE51E92B1AA40908003A4E6A /* libPods-Reachability.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Reachability.a"; path = "../Pods/build/Debug-iphoneos/libPods-Reachability.a"; sourceTree = "<group>"; };
+		BE51E92D1AA4095C003A4E6A /* libPods-webservice-Reachability.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-webservice-Reachability.a"; path = "../Pods/build/Debug-iphoneos/libPods-webservice-Reachability.a"; sourceTree = "<group>"; };
+		BE51E92F1AA4096C003A4E6A /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "../Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
+		BE51E9311AA40986003A4E6A /* libPods-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AFNetworking.a"; path = "../Pods/build/Debug-iphoneos/libPods-AFNetworking.a"; sourceTree = "<group>"; };
+		BE51E9321AA40986003A4E6A /* libPods-Reachability.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Reachability.a"; path = "../Pods/build/Debug-iphoneos/libPods-Reachability.a"; sourceTree = "<group>"; };
+		BE51E9351AA409B9003A4E6A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		BE51E9371AA409CB003A4E6A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		BE51E9391AA409D2003A4E6A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		BE51E93B1AA409DC003A4E6A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		BE51E93D1AA40CA3003A4E6A /* ca.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = ca.cer; sourceTree = SOURCE_ROOT; };
+		BE51E93E1AA40CA3003A4E6A /* supercard.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = supercard.cer; sourceTree = SOURCE_ROOT; };
+		BEDB805A1AA1727100E10122 /* webserviceDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = webserviceDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEDB805E1AA1727100E10122 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEDB805F1AA1727100E10122 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BEDB80611AA1727100E10122 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		BEDB80621AA1727100E10122 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BEDB80651AA1727100E10122 /* webserviceDemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = webserviceDemo.xcdatamodel; sourceTree = "<group>"; };
+		BEDB80671AA1727100E10122 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		BEDB80681AA1727100E10122 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		BEDB806B1AA1727100E10122 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BEDB806D1AA1727100E10122 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		BEDB80701AA1727100E10122 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		BEDB80761AA1727100E10122 /* webserviceDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = webserviceDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEDB807B1AA1727100E10122 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEDB807C1AA1727100E10122 /* webserviceDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = webserviceDemoTests.m; sourceTree = "<group>"; };
+		BEDB80871AA172CE00E10122 /* DemoWebservice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoWebservice.h; sourceTree = "<group>"; };
+		BEDB80881AA172CE00E10122 /* DemoWebservice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoWebservice.m; sourceTree = "<group>"; };
+		BEDB80891AA172CE00E10122 /* DemoResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoResponse.h; sourceTree = "<group>"; };
+		BEDB808A1AA172CE00E10122 /* DemoResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoResponse.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BEDB80571AA1727100E10122 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE51E93C1AA409DC003A4E6A /* SystemConfiguration.framework in Frameworks */,
+				BE51E93A1AA409D2003A4E6A /* Security.framework in Frameworks */,
+				BE51E9381AA409CB003A4E6A /* MobileCoreServices.framework in Frameworks */,
+				BE51E9361AA409B9003A4E6A /* CoreGraphics.framework in Frameworks */,
+				BE51E9331AA40986003A4E6A /* libPods-AFNetworking.a in Frameworks */,
+				BE51E9341AA40986003A4E6A /* libPods-Reachability.a in Frameworks */,
+				BE51E9301AA4096C003A4E6A /* libPods.a in Frameworks */,
+				BE51E9281AA408D1003A4E6A /* libwebservice.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEDB80731AA1727100E10122 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BEDB80511AA1727100E10122 = {
+			isa = PBXGroup;
+			children = (
+				BE51E93B1AA409DC003A4E6A /* SystemConfiguration.framework */,
+				BE51E9391AA409D2003A4E6A /* Security.framework */,
+				BE51E9371AA409CB003A4E6A /* MobileCoreServices.framework */,
+				BE51E9351AA409B9003A4E6A /* CoreGraphics.framework */,
+				BE51E9311AA40986003A4E6A /* libPods-AFNetworking.a */,
+				BE51E9321AA40986003A4E6A /* libPods-Reachability.a */,
+				BE51E92F1AA4096C003A4E6A /* libPods.a */,
+				BE51E92D1AA4095C003A4E6A /* libPods-webservice-Reachability.a */,
+				BE51E92B1AA40908003A4E6A /* libPods-Reachability.a */,
+				BE51E9291AA408DD003A4E6A /* libPods-AFNetworking.a */,
+				BE51E9271AA408D1003A4E6A /* libwebservice.a */,
+				BE51E9251AA408CE003A4E6A /* libPods-webservice.a */,
+				BE51E9231AA3FF10003A4E6A /* libPods.a */,
+				BE51E9211AA3FF0C003A4E6A /* libwebservice.a */,
+				BEDB805C1AA1727100E10122 /* webserviceDemo */,
+				BEDB80791AA1727100E10122 /* webserviceDemoTests */,
+				BEDB805B1AA1727100E10122 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BEDB805B1AA1727100E10122 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BEDB805A1AA1727100E10122 /* webserviceDemo.app */,
+				BEDB80761AA1727100E10122 /* webserviceDemoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BEDB805C1AA1727100E10122 /* webserviceDemo */ = {
+			isa = PBXGroup;
+			children = (
+				BEDB80861AA1729C00E10122 /* webservice */,
+				BEDB80611AA1727100E10122 /* AppDelegate.h */,
+				BEDB80621AA1727100E10122 /* AppDelegate.m */,
+				BEDB80671AA1727100E10122 /* ViewController.h */,
+				BEDB80681AA1727100E10122 /* ViewController.m */,
+				BEDB806A1AA1727100E10122 /* Main.storyboard */,
+				BEDB806D1AA1727100E10122 /* Images.xcassets */,
+				BEDB806F1AA1727100E10122 /* LaunchScreen.xib */,
+				BEDB80641AA1727100E10122 /* webserviceDemo.xcdatamodeld */,
+				BEDB805D1AA1727100E10122 /* Supporting Files */,
+			);
+			path = webserviceDemo;
+			sourceTree = "<group>";
+		};
+		BEDB805D1AA1727100E10122 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BE51E93D1AA40CA3003A4E6A /* ca.cer */,
+				BE51E93E1AA40CA3003A4E6A /* supercard.cer */,
+				BEDB805E1AA1727100E10122 /* Info.plist */,
+				BEDB805F1AA1727100E10122 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BEDB80791AA1727100E10122 /* webserviceDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				BEDB807C1AA1727100E10122 /* webserviceDemoTests.m */,
+				BEDB807A1AA1727100E10122 /* Supporting Files */,
+			);
+			path = webserviceDemoTests;
+			sourceTree = "<group>";
+		};
+		BEDB807A1AA1727100E10122 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BEDB807B1AA1727100E10122 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BEDB80861AA1729C00E10122 /* webservice */ = {
+			isa = PBXGroup;
+			children = (
+				BEDB80871AA172CE00E10122 /* DemoWebservice.h */,
+				BEDB80881AA172CE00E10122 /* DemoWebservice.m */,
+				BEDB80891AA172CE00E10122 /* DemoResponse.h */,
+				BEDB808A1AA172CE00E10122 /* DemoResponse.m */,
+			);
+			name = webservice;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BEDB80591AA1727100E10122 /* webserviceDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEDB80801AA1727100E10122 /* Build configuration list for PBXNativeTarget "webserviceDemo" */;
+			buildPhases = (
+				BEDB80561AA1727100E10122 /* Sources */,
+				BEDB80571AA1727100E10122 /* Frameworks */,
+				BEDB80581AA1727100E10122 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = webserviceDemo;
+			productName = webserviceDemo;
+			productReference = BEDB805A1AA1727100E10122 /* webserviceDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BEDB80751AA1727100E10122 /* webserviceDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEDB80831AA1727100E10122 /* Build configuration list for PBXNativeTarget "webserviceDemoTests" */;
+			buildPhases = (
+				BEDB80721AA1727100E10122 /* Sources */,
+				BEDB80731AA1727100E10122 /* Frameworks */,
+				BEDB80741AA1727100E10122 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BEDB80781AA1727100E10122 /* PBXTargetDependency */,
+			);
+			name = webserviceDemoTests;
+			productName = webserviceDemoTests;
+			productReference = BEDB80761AA1727100E10122 /* webserviceDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BEDB80521AA1727100E10122 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = ken;
+				TargetAttributes = {
+					BEDB80591AA1727100E10122 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					BEDB80751AA1727100E10122 = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = BEDB80591AA1727100E10122;
+					};
+				};
+			};
+			buildConfigurationList = BEDB80551AA1727100E10122 /* Build configuration list for PBXProject "webserviceDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BEDB80511AA1727100E10122;
+			productRefGroup = BEDB805B1AA1727100E10122 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BEDB80591AA1727100E10122 /* webserviceDemo */,
+				BEDB80751AA1727100E10122 /* webserviceDemoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BEDB80581AA1727100E10122 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEDB806C1AA1727100E10122 /* Main.storyboard in Resources */,
+				BEDB80711AA1727100E10122 /* LaunchScreen.xib in Resources */,
+				BE51E93F1AA40CA3003A4E6A /* ca.cer in Resources */,
+				BE51E9401AA40CA3003A4E6A /* supercard.cer in Resources */,
+				BEDB806E1AA1727100E10122 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEDB80741AA1727100E10122 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BEDB80561AA1727100E10122 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEDB80631AA1727100E10122 /* AppDelegate.m in Sources */,
+				BEDB80661AA1727100E10122 /* webserviceDemo.xcdatamodeld in Sources */,
+				BEDB808B1AA172CE00E10122 /* DemoWebservice.m in Sources */,
+				BEDB80691AA1727100E10122 /* ViewController.m in Sources */,
+				BEDB808C1AA172CE00E10122 /* DemoResponse.m in Sources */,
+				BEDB80601AA1727100E10122 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BEDB80721AA1727100E10122 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEDB807D1AA1727100E10122 /* webserviceDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BEDB80781AA1727100E10122 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BEDB80591AA1727100E10122 /* webserviceDemo */;
+			targetProxy = BEDB80771AA1727100E10122 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BEDB806A1AA1727100E10122 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BEDB806B1AA1727100E10122 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BEDB806F1AA1727100E10122 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BEDB80701AA1727100E10122 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BEDB807E1AA1727100E10122 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		BEDB807F1AA1727100E10122 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BEDB80811AA1727100E10122 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/../webservice/**",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = webserviceDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/ken/Desktop/projects/xiaoguCode/ios/webservice/build/Debug-iphoneos/**",
+					"/Users/ken/Desktop/projects/xiaoguCode/ios/webservice/build/Debug-iphoneos",
+					"/Users/ken/Desktop/projects/xiaoguCode/ios/webservice/Pods/build/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/webservice-dnlmjxmudojwdsgrscywdrtgahoh/Build/Products/Debug-iphoneos",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		BEDB80821AA1727100E10122 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/../webservice/**",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = webserviceDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/ken/Desktop/projects/xiaoguCode/ios/webservice/build/Debug-iphoneos/**",
+					"/Users/ken/Desktop/projects/xiaoguCode/ios/webservice/build/Debug-iphoneos",
+					"/Users/ken/Desktop/projects/xiaoguCode/ios/webservice/Pods/build/Debug-iphoneos",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/webservice-dnlmjxmudojwdsgrscywdrtgahoh/Build/Products/Debug-iphoneos",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		BEDB80841AA1727100E10122 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = webserviceDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/webserviceDemo.app/webserviceDemo";
+			};
+			name = Debug;
+		};
+		BEDB80851AA1727100E10122 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = webserviceDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/webserviceDemo.app/webserviceDemo";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BEDB80551AA1727100E10122 /* Build configuration list for PBXProject "webserviceDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEDB807E1AA1727100E10122 /* Debug */,
+				BEDB807F1AA1727100E10122 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BEDB80801AA1727100E10122 /* Build configuration list for PBXNativeTarget "webserviceDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEDB80811AA1727100E10122 /* Debug */,
+				BEDB80821AA1727100E10122 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BEDB80831AA1727100E10122 /* Build configuration list for PBXNativeTarget "webserviceDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEDB80841AA1727100E10122 /* Debug */,
+				BEDB80851AA1727100E10122 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BEDB80641AA1727100E10122 /* webserviceDemo.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BEDB80651AA1727100E10122 /* webserviceDemo.xcdatamodel */,
+			);
+			currentVersion = BEDB80651AA1727100E10122 /* webserviceDemo.xcdatamodel */;
+			path = webserviceDemo.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = BEDB80521AA1727100E10122 /* Project object */;
+}
