@@ -27,22 +27,22 @@
 }
 
 -(Class)responseClass:(NSString *)method{
-    return [XGResponseBase class];
+    return [DemoResponse class];
 }
 
 -(NSDictionary*)createReturnDataFromError:(NSError *)error
 {
     if(error){
         if (error.code == NSURLErrorCancelled) {
-            return [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%ld",(long)NSURLErrorCancelled],@"code",@"用户中途取消",@"reason", nil];
+            return [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%ld",(long)NSURLErrorCancelled],@"code",@"用户中途取消",@"reason", @YES,WebserviceRequestFailKey,nil];
         }else if (error.code == NSURLErrorUserCancelledAuthentication){
-            return [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%ld",(long)NSURLErrorCancelled],@"code",@"网络繁忙,请稍后再试",@"reason", nil];
+            return [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%ld",(long)NSURLErrorUserCancelledAuthentication],@"code",@"网络繁忙,请稍后再试",@"reason", @YES,WebserviceRequestFailKey,nil];
         }
         else{
-            return [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%ld",(long)error.code],@"code",error.userInfo[NSLocalizedDescriptionKey],@"reason", nil];
+            return [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%ld",(long)error.code],@"code",error.userInfo[NSLocalizedDescriptionKey],@"reason", @YES,WebserviceRequestFailKey,nil];
         }
     }else{
-        return [NSDictionary dictionaryWithObjectsAndKeys:@"0",@"code",@"未知网络错误",@"reason", nil];
+        return [NSDictionary dictionaryWithObjectsAndKeys:@"0",@"code",@"未知网络错误",@"reason", @YES,WebserviceRequestFailKey,nil];
     }
 }
 

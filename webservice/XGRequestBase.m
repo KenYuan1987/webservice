@@ -16,7 +16,9 @@
 
 @interface XGRequestBase()
 @property(nonatomic,strong) AFHTTPRequestOperationManager *manager;
+@property(nonatomic,strong) AFHTTPRequestOperationManager *bestManager;//革命性的优化
 @property(nonatomic,strong) id webReachabilityObserver;
+@property(nonatomic,assign) BOOL inBestMode;
 @end
 
 @implementation XGRequestBase
@@ -28,13 +30,13 @@
     {
         self.manager = [AFHTTPRequestOperationManager manager];
         if (![WebserviceReachability isWebserviceReachable]) {
-            self.manager.operationQueue.suspended = YES;
+            self.bestManager.operationQueue.suspended = YES;
         }
         self.webReachabilityObserver = [[NSNotificationCenter defaultCenter] addObserverForName:kReachabilityChangedNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
             if ([WebserviceReachability isWebserviceReachable]) {
-                self.manager.operationQueue.suspended = NO;
+                self.bestManager.operationQueue.suspended = NO;
             }else{
-                self.manager.operationQueue.suspended = YES;
+                self.bestManager.operationQueue.suspended = YES;
             }
         }];
         _httpMethod=@"POST";
@@ -113,7 +115,11 @@
     operation.responseSerializer.acceptableContentTypes = [operation.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
     operation.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModePublicKey];
     operation.securityPolicy.allowInvalidCertificates = YES;
-    [self.manager.operationQueue addOperation:operation];
+    if (self.inBestMode) {
+        [self.bestManager.operationQueue addOperation:operation];
+    }else{
+        [self.manager.operationQueue addOperation:operation];
+    }
     return operation;
 }
 
@@ -176,6 +182,7 @@
 -(void)cancelAllRequest
 {
     [self.manager.operationQueue cancelAllOperations];
+    [self.bestManager.operationQueue cancelAllOperations];
 }
 
 -(void)tryMyBestToLoad:(void(^)(void))webserviceCall{
@@ -183,9 +190,14 @@
         if (!webserviceCall) {
             return;
         }
+        if (!_bestManager) {
+            _bestManager = [AFHTTPRequestOperationManager manager];
+        }
         NSUInteger originalRetryTime = _retryTime;
         _retryTime = INT_MAX;
+        self.inBestMode = YES;
         webserviceCall();
+        self.inBestMode = NO;
         _retryTime = originalRetryTime;
     }
 }

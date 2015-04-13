@@ -17,10 +17,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSOperation *operation = [self.webservice businessZones:@"广州" complete:^(DemoResponse *response) {
-        NSLog(@"%@",response.mapData);
-        NSLog(@"%@",response.error);
+    __block NSOperation *operation;
+    [self.webservice tryMyBestToLoad:^{
+        operation = [self.webservice businessZones:@"广州" complete:^(DemoResponse *response) {
+            NSLog(@"%@",response.mapData);
+            NSLog(@"%@",response.error);
+        }];
     }];
+    
     [operation cancel];
 }
 

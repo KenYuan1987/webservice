@@ -8,6 +8,7 @@
 
 #import "XGResponseBase.h"
 NSString *const WebserviceErrorDomain = @"WebserviceErrorDomain";
+NSString *const WebserviceRequestFailKey = @"WebserviceRequestFailKey";
 @implementation XGResponseBase
 
 - (void)preprocessData
@@ -32,15 +33,20 @@ NSString *const WebserviceErrorDomain = @"WebserviceErrorDomain";
         _rawData = [dic valueForKeyPath:[self responseRawDataKeyPath]];
         _msg = [dic valueForKeyPath:[self responseMsgKeyPath]];
         _code = [[dic valueForKeyPath:[self responseCodeKeyPath]] integerValue];
-        if([self checkResultReturnCode:_code])
-            _isSuccess = YES;
-        else
-            _isSuccess = NO;
-        if(_isSuccess)
+        _isRqSuccess = ![[dic valueForKey:WebserviceRequestFailKey] boolValue];
+        if(_isRqSuccess){
+            if([self checkResultReturnCode:_code])
+                _isOpSuccess = YES;
+            else
+                _isOpSuccess = NO;
+        }else{
+            _isOpSuccess = NO;
+        }
+        if(_isOpSuccess)
         {
             [self preprocessData];
         }else{
-            _error = [NSError errorWithDomain:WebserviceErrorDomain code:_code userInfo:@{NSLocalizedFailureReasonErrorKey:_msg}];
+            _error = [NSError errorWithDomain:WebserviceErrorDomain code:_code userInfo:[NSDictionary dictionaryWithObjectsAndKeys:_msg,NSLocalizedDescriptionKey, nil]];
         }
     }
     return self;

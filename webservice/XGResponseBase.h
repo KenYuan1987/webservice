@@ -10,8 +10,8 @@
 
 @interface XGResponseBase : NSObject
 -(id)initWithDictionary:(NSDictionary*)dic;
-
-@property(nonatomic,readonly) BOOL isSuccess;
+@property(nonatomic,readonly) BOOL isRqSuccess;//网络请求成功，但不代表业务执行成功
+@property(nonatomic,readonly) BOOL isOpSuccess;//业务执行成功
 @property(nonatomic,readonly) NSInteger code;
 @property(nonatomic,readonly,copy) NSString *method;
 @property(nonatomic,readonly,copy) NSString *version;
@@ -30,4 +30,5 @@
 -(BOOL)checkResultReturnCode:(NSInteger)code;//override point
 
 extern NSString *const WebserviceErrorDomain;
+extern NSString *const WebserviceRequestFailKey;//自行组装dictionary时设置此key为YES代表网络请求失败，isRqSuccess==NO
 @end

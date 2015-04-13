@@ -92,7 +92,7 @@ Pod::Spec.new do |s|
   s.source_files  = "webservice", "webservice/**/*.{h,m}"
   #s.exclude_files = "Classes/Exclude"
 
-  # s.public_header_files = "webservice/*.h"
+  s.public_header_files = "webservice/*.h"
 
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -131,6 +131,6 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  s.dependency "AFNetworking", "~> 2.5.1"
-
+  s.dependency "AFNetworking", "~> 2.5.1" 
+  s.dependency "Reachability"
 end
