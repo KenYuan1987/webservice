@@ -85,9 +85,93 @@
 
 -(NSOperation *)addRequestToQueueWithParams:(NSDictionary*)paramDic userInfo:(NSDictionary*)info forMethod:(NSString*)method
 {
-    NSDictionary *filteredDic=[self preProcessParams:paramDic forMethod:method];
-    NSString *paramJsonStr=[self jsonStringFromDictionary:filteredDic];
+    NSDictionary *filteredDic = [self preProcessParams:paramDic forMethod:method];
+    NSString *paramJsonStr;
+    @try {
+        paramJsonStr = [self jsonStringFromDictionary:filteredDic];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"%@",exception);
+        NSAssert([self.httpMethod isEqualToString:@"POST"], @"要上传数据类型肯定是用POST了");
+        return [self addMultiPartRequestToQueueWithParam:filteredDic userInfo:info forMethod:method];
+    }
     return [self addRequestToQueueWithParamString:paramJsonStr userInfo:info forMethod:method];
+}
+
+-(NSOperation *)addMultiPartRequestToQueueWithParam:(NSDictionary *)params userInfo:(NSDictionary *)info forMethod:(NSString *)method{
+    return  [self addMultiPartRequestToQueueWithParam:params userInfo:info forMethod:method leftRetryTime:_retryTime];
+}
+
+-(NSOperation *)addMultiPartRequestToQueueWithParam:(NSDictionary *)params userInfo:(NSDictionary *)info forMethod:(NSString *)method leftRetryTime:(NSUInteger)leftRetryTime{
+    NSURL *url=[self createUrlFor:method withJsonStr:nil];
+    NSMutableDictionary *formDataParams = [NSMutableDictionary new];
+    NSMutableDictionary *plainStrParams = [NSMutableDictionary new];
+    for (NSString *key in params) {
+        //NSString, NSNumber, NSArray, NSDictionary, or NSNull
+        if ([params[key] isKindOfClass:[NSString class]]
+            || [params[key] isKindOfClass:[NSNumber class]]
+            //|| [params[key] isKindOfClass:[NSArray class]]
+            // || [params[key] isKindOfClass:[NSDictionary class]]
+            || [params[key] isKindOfClass:[NSNull class]]) {
+            [plainStrParams setObject:params[key] forKey:key];
+        }else{
+            [formDataParams setObject:params[key] forKey:key];
+        }
+    }
+    AFHTTPRequestOperationManager *currentManager;
+    if (self.inBestMode) {
+        currentManager = self.bestManager;
+    }else{
+        currentManager = self.manager;
+    }
+    
+    NSError *serializationError = nil;
+    NSMutableURLRequest *request = [currentManager.requestSerializer multipartFormRequestWithMethod:@"POST" URLString:[url absoluteString] parameters:plainStrParams constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        for (NSString *key in formDataParams){
+            if ([formDataParams[key] isKindOfClass:[UIImage class]]) {
+                [formData appendPartWithFileData:UIImageJPEGRepresentation(formDataParams[key],1) name:key fileName:@"temp.jpg" mimeType:@"image/jpeg"];
+            }
+            else if([formDataParams[key] isKindOfClass:[NSArray class]]){
+                NSArray *arrayParam = formDataParams[key];
+                if ([arrayParam count] > 0 && [arrayParam[0] isKindOfClass:[UIImage class]]) {
+                    for(int i = 0;i < [arrayParam count];i++){
+                        [formData appendPartWithFileData:UIImageJPEGRepresentation(arrayParam[0],1) name:key fileName:[NSString stringWithFormat:@"temp%d.jpg",i] mimeType:@"image/jpeg"];
+                    }
+                }
+                else
+                    [formData appendPartWithFormData:[[formDataParams[key] description] dataUsingEncoding:currentManager.requestSerializer.stringEncoding] name:key];
+            }
+        }
+    } error:&serializationError];
+    if (serializationError) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wgnu"
+        dispatch_async(currentManager.completionQueue ?: dispatch_get_main_queue(), ^{
+            [self handleResult:serializationError withUserinfo:info];
+        });
+#pragma clang diagnostic pop
+        return nil;
+    }
+    //    NSString *paramJsonStr = [self jsonStringFromDictionary:plainStrParams];
+    //    [request setHTTPBody:[paramJsonStr dataUsingEncoding:NSUTF8StringEncoding]];
+    [self configRequest:request];
+    
+    AFHTTPRequestOperation *operation = [currentManager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self handleResult:responseObject withUserinfo:info];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        if (leftRetryTime > 0) {
+            [self addMultiPartRequestToQueueWithParam:params userInfo:info forMethod:method leftRetryTime:_retryTime - 1];
+        }else{
+            NSData *errData = error.userInfo[@"com.alamofire.serialization.response.error.data"];
+            NSLog(@"%@",[[NSString alloc] initWithData:errData encoding:NSUTF8StringEncoding]);
+            [self handleResult:error withUserinfo:info];
+        }
+    }];
+    operation.responseSerializer.acceptableContentTypes = [operation.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+    operation.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModePublicKey];
+    operation.securityPolicy.allowInvalidCertificates = YES;
+    [currentManager.operationQueue addOperation:operation];
+    return operation;
 }
 
 -(NSOperation *)addRequestToQueueWithParamString:(NSString*)paramJsonStr userInfo:(NSDictionary*)info forMethod:(NSString*)method
