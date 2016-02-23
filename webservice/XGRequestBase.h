@@ -22,6 +22,6 @@
 
 -(void)cancelAllRequest;
 -(void)tryMyBestToLoad:(void(^)(void))webserviceCall;//一个app必须要load到的基本数据，可以考虑用这个来加载
--(NSOperation *)request:(NSString*)method withParams:(NSDictionary*)dic finish:(void(^)(XGResponseBase*))result;
--(NSOperation *)request:(NSString*)method withParams:(NSDictionary*)dic andTimeOut:(NSTimeInterval)timeout finish:(void(^)(XGResponseBase*))result;
+-(NSURLSessionDataTask *)request:(NSString*)method withParams:(NSDictionary*)dic finish:(void(^)(XGResponseBase*))result;
+-(NSURLSessionDataTask *)request:(NSString*)method withParams:(NSDictionary*)dic andTimeOut:(NSTimeInterval)timeout finish:(void(^)(XGResponseBase*))result;
 @end

@@ -15,8 +15,8 @@
 #define completeBlockKey @"completeBlock"
 
 @interface XGRequestBase()
-@property(nonatomic,strong) AFHTTPRequestOperationManager *manager;
-@property(nonatomic,strong) AFHTTPRequestOperationManager *bestManager;//革命性的优化
+@property(nonatomic,strong) AFHTTPSessionManager *manager;
+@property(nonatomic,strong) AFHTTPSessionManager *bestManager;//革命性的优化
 @property(nonatomic,strong) id webReachabilityObserver;
 @property(nonatomic,assign) BOOL inBestMode;
 @end
@@ -28,7 +28,7 @@
     self=[super init];
     if(self)
     {
-        self.manager = [AFHTTPRequestOperationManager manager];
+        self.manager = [AFHTTPSessionManager manager];
         if (![WebserviceReachability isWebserviceReachable]) {
             self.bestManager.operationQueue.suspended = YES;
         }
@@ -77,48 +77,70 @@
     return dic;
 }
 
--(NSOperation *)request:(NSString*)method withParams:(NSDictionary*)dic complete:(void(^)(NSDictionary*))block
+-(NSURLSessionDataTask *)request:(NSString*)method withParams:(NSDictionary*)dic complete:(void(^)(NSDictionary*))block
 {
     NSDictionary *userInfo=[NSDictionary dictionaryWithObjectsAndKeys:block,completeBlockKey, nil];
-    return [self addRequestToQueueWithParams:dic userInfo:userInfo forMethod:method];
+    return [self requestWithParams:dic userInfo:userInfo forMethod:method];
 }
 
--(NSOperation *)addRequestToQueueWithParams:(NSDictionary*)paramDic userInfo:(NSDictionary*)info forMethod:(NSString*)method
+-(NSURLSessionDataTask *)requestWithParams:(NSDictionary*)paramDic userInfo:(NSDictionary*)info forMethod:(NSString*)method
 {
     NSDictionary *filteredDic = [self preProcessParams:paramDic forMethod:method];
     NSString *paramJsonStr;
-    @try {
+    if(!filteredDic || [NSJSONSerialization isValidJSONObject:filteredDic]) {
         paramJsonStr = [self jsonStringFromDictionary:filteredDic];
-    }
-    @catch (NSException *exception) {
-        NSLog(@"%@",exception);
+    } else {
         NSAssert([self.httpMethod isEqualToString:@"POST"], @"要上传数据类型肯定是用POST了");
-        return [self addMultiPartRequestToQueueWithParam:filteredDic userInfo:info forMethod:method];
+        return [self multiPartRequestWithParam:filteredDic userInfo:info forMethod:method];
     }
     return [self addRequestToQueueWithParamString:paramJsonStr userInfo:info forMethod:method];
 }
 
--(NSOperation *)addMultiPartRequestToQueueWithParam:(NSDictionary *)params userInfo:(NSDictionary *)info forMethod:(NSString *)method{
+
+-(NSURLSessionDataTask *)multiPartRequestWithParam:(NSDictionary *)params userInfo:(NSDictionary *)info forMethod:(NSString *)method{
     return  [self addMultiPartRequestToQueueWithParam:params userInfo:info forMethod:method leftRetryTime:_retryTime];
 }
 
--(NSOperation *)addMultiPartRequestToQueueWithParam:(NSDictionary *)params userInfo:(NSDictionary *)info forMethod:(NSString *)method leftRetryTime:(NSUInteger)leftRetryTime{
+-(void)constructFormData:(id<AFMultipartFormData>)formData withParams:(NSDictionary *)formDataParams and:(AFHTTPSessionManager *)currentManager {
+    for (NSString *key in formDataParams){
+        if ([formDataParams[key] isKindOfClass:[UIImage class]]) {
+            [formData appendPartWithFileData:UIImageJPEGRepresentation(formDataParams[key],1) name:key fileName:@"temp.jpg" mimeType:@"image/jpeg"];
+        } else if ([formDataParams[key] isKindOfClass:[NSURL class]]) {
+            NSError *err;
+            [formData appendPartWithFileURL:formDataParams[key] name:key error:&err];
+        }
+        else if([formDataParams[key] isKindOfClass:[NSArray class]]){
+            NSArray *arrayParam = formDataParams[key];
+            if ([arrayParam count] > 0 && [arrayParam[0] isKindOfClass:[UIImage class]]) {
+                for(int i = 0;i < [arrayParam count];i++){
+                    [formData appendPartWithFileData:UIImageJPEGRepresentation(arrayParam[0],1) name:key fileName:[NSString stringWithFormat:@"temp%d.jpg",i] mimeType:@"image/jpeg"];
+                }
+            } else if ([arrayParam count] > 0 && [arrayParam[0] isKindOfClass:[NSURL class]]) {
+                for(int i = 0;i < [arrayParam count];i++){
+                    NSError *err;
+                    [formData appendPartWithFileURL:arrayParam[i] name:key error:&err];
+                }
+            }
+            else
+                [formData appendPartWithFormData:[[formDataParams[key] description] dataUsingEncoding:currentManager.requestSerializer.stringEncoding] name:key];
+        }
+    }
+}
+
+-(NSURLSessionDataTask *)addMultiPartRequestToQueueWithParam:(NSDictionary *)params userInfo:(NSDictionary *)info forMethod:(NSString *)method leftRetryTime:(NSUInteger)leftRetryTime{
     NSURL *url=[self createUrlFor:method withJsonStr:nil];
     NSMutableDictionary *formDataParams = [NSMutableDictionary new];
     NSMutableDictionary *plainStrParams = [NSMutableDictionary new];
     for (NSString *key in params) {
-        //NSString, NSNumber, NSArray, NSDictionary, or NSNull
         if ([params[key] isKindOfClass:[NSString class]]
             || [params[key] isKindOfClass:[NSNumber class]]
-            //|| [params[key] isKindOfClass:[NSArray class]]
-            // || [params[key] isKindOfClass:[NSDictionary class]]
             || [params[key] isKindOfClass:[NSNull class]]) {
             [plainStrParams setObject:params[key] forKey:key];
         }else{
             [formDataParams setObject:params[key] forKey:key];
         }
     }
-    AFHTTPRequestOperationManager *currentManager;
+    AFHTTPSessionManager *currentManager;
     if (self.inBestMode) {
         currentManager = self.bestManager;
     }else{
@@ -126,22 +148,9 @@
     }
     
     NSError *serializationError = nil;
+    
     NSMutableURLRequest *request = [currentManager.requestSerializer multipartFormRequestWithMethod:@"POST" URLString:[url absoluteString] parameters:plainStrParams constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        for (NSString *key in formDataParams){
-            if ([formDataParams[key] isKindOfClass:[UIImage class]]) {
-                [formData appendPartWithFileData:UIImageJPEGRepresentation(formDataParams[key],1) name:key fileName:@"temp.jpg" mimeType:@"image/jpeg"];
-            }
-            else if([formDataParams[key] isKindOfClass:[NSArray class]]){
-                NSArray *arrayParam = formDataParams[key];
-                if ([arrayParam count] > 0 && [arrayParam[0] isKindOfClass:[UIImage class]]) {
-                    for(int i = 0;i < [arrayParam count];i++){
-                        [formData appendPartWithFileData:UIImageJPEGRepresentation(arrayParam[0],1) name:key fileName:[NSString stringWithFormat:@"temp%d.jpg",i] mimeType:@"image/jpeg"];
-                    }
-                }
-                else
-                    [formData appendPartWithFormData:[[formDataParams[key] description] dataUsingEncoding:currentManager.requestSerializer.stringEncoding] name:key];
-            }
-        }
+        [self constructFormData:formData withParams:formDataParams and:currentManager];
     } error:&serializationError];
     if (serializationError) {
 #pragma clang diagnostic push
@@ -152,59 +161,51 @@
 #pragma clang diagnostic pop
         return nil;
     }
-    //    NSString *paramJsonStr = [self jsonStringFromDictionary:plainStrParams];
-    //    [request setHTTPBody:[paramJsonStr dataUsingEncoding:NSUTF8StringEncoding]];
     [self configRequest:request];
-    
-    AFHTTPRequestOperation *operation = [currentManager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self handleResult:responseObject withUserinfo:info];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if (leftRetryTime > 0) {
-            [self addMultiPartRequestToQueueWithParam:params userInfo:info forMethod:method leftRetryTime:_retryTime - 1];
-        }else{
-            NSData *errData = error.userInfo[@"com.alamofire.serialization.response.error.data"];
-            NSLog(@"%@",[[NSString alloc] initWithData:errData encoding:NSUTF8StringEncoding]);
-            [self handleResult:error withUserinfo:info];
+    NSURLSessionDataTask *task = [currentManager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (error) {
+            if (leftRetryTime > 0) {
+                [self addMultiPartRequestToQueueWithParam:params userInfo:info forMethod:method leftRetryTime:_retryTime - 1];
+            }else{
+                NSData *errData = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
+                NSLog(@"%@",[[NSString alloc] initWithData:errData encoding:NSUTF8StringEncoding]);
+                [self handleResult:error withUserinfo:info];
+            }
+        } else {
+            [self handleResult:responseObject withUserinfo:info];
         }
     }];
-    operation.responseSerializer.acceptableContentTypes = [operation.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
-    operation.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModePublicKey];
-    operation.securityPolicy.allowInvalidCertificates = YES;
-    [currentManager.operationQueue addOperation:operation];
-    return operation;
+    [task resume];
+    return task;
 }
 
--(NSOperation *)addRequestToQueueWithParamString:(NSString*)paramJsonStr userInfo:(NSDictionary*)info forMethod:(NSString*)method
+-(NSURLSessionDataTask *)addRequestToQueueWithParamString:(NSString*)paramJsonStr userInfo:(NSDictionary*)info forMethod:(NSString*)method
 {
     return [self addRequestToQueueWithParamString:paramJsonStr userInfo:info forMethod:method leftRetryTime:_retryTime];
 }
 
--(NSOperation *)addRequestToQueueWithParamString:(NSString*)paramJsonStr userInfo:(NSDictionary*)info forMethod:(NSString*)method leftRetryTime:(NSUInteger)leftRetryTime{
+-(NSURLSessionDataTask *)addRequestToQueueWithParamString:(NSString*)paramJsonStr userInfo:(NSDictionary*)info forMethod:(NSString*)method leftRetryTime:(NSUInteger)leftRetryTime{
     NSURL *url=[self createUrlFor:method withJsonStr:paramJsonStr];
     NSMutableURLRequest *request=[[NSMutableURLRequest alloc]initWithURL:url];
     [self configRequest:request];
     [request setHTTPMethod:_httpMethod];
-    [request setHTTPBody:[paramJsonStr dataUsingEncoding:NSUTF8StringEncoding]];
-    //request.shouldAttemptPersistentConnection=YES;
+    if ([_httpMethod isEqualToString:@"POST"]) {
+        [request setHTTPBody:[paramJsonStr dataUsingEncoding:NSUTF8StringEncoding]];
+    }
     request.timeoutInterval=_timeoutSecond;
-    AFHTTPRequestOperation *operation = [self.manager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self handleResult:responseObject withUserinfo:info];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if (leftRetryTime > 0) {
-            [self addRequestToQueueWithParamString:paramJsonStr userInfo:info forMethod:method leftRetryTime:_retryTime - 1];
-        }else{
-            [self handleResult:error withUserinfo:info];
+    NSURLSessionDataTask *task = [self.manager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (error) {
+            if (leftRetryTime > 0) {
+                [self addRequestToQueueWithParamString:paramJsonStr userInfo:info forMethod:method leftRetryTime:_retryTime - 1];
+            }else{
+                [self handleResult:error withUserinfo:info];
+            }
+        } else {
+            [self handleResult:responseObject withUserinfo:info];
         }
     }];
-    operation.responseSerializer.acceptableContentTypes = [operation.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
-    operation.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModePublicKey];
-    operation.securityPolicy.allowInvalidCertificates = YES;
-    if (self.inBestMode) {
-        [self.bestManager.operationQueue addOperation:operation];
-    }else{
-        [self.manager.operationQueue addOperation:operation];
-    }
-    return operation;
+    [task resume];
+    return task;
 }
 
 -(void)configRequest:(NSMutableURLRequest*)request{
@@ -215,7 +216,7 @@
     return [XGResponseBase class];
 }
 
--(NSOperation *)request:(NSString*)method withParams:(NSDictionary*)dic finish:(void(^)(XGResponseBase*))result
+-(NSURLSessionDataTask *)request:(NSString*)method withParams:(NSDictionary*)dic finish:(void(^)(XGResponseBase*))result
 {
     return [self request:method withParams:dic complete:^(NSDictionary *dic) {
         if(result)
@@ -227,11 +228,11 @@
     }];
 }
 
--(NSOperation *)request:(NSString*)method withParams:(NSDictionary*)dic andTimeOut:(NSTimeInterval)timeout finish:(void(^)(XGResponseBase*))result{
+-(NSURLSessionDataTask *)request:(NSString*)method withParams:(NSDictionary*)dic andTimeOut:(NSTimeInterval)timeout finish:(void(^)(XGResponseBase*))result{
     @synchronized(self){
         NSUInteger originalTimeOut = _timeoutSecond;
         _timeoutSecond = timeout;
-        NSOperation *op = [self request:method withParams:dic finish:result];
+        NSURLSessionDataTask *op = [self request:method withParams:dic finish:result];
         _timeoutSecond = originalTimeOut;
         return op;
     }
@@ -275,7 +276,7 @@
             return;
         }
         if (!_bestManager) {
-            _bestManager = [AFHTTPRequestOperationManager manager];
+            _bestManager = [AFHTTPSessionManager manager];
         }
         NSUInteger originalRetryTime = _retryTime;
         _retryTime = INT_MAX;
